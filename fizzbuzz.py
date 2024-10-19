@@ -13,14 +13,21 @@ def fizzbuzz(n):
     return results
 
 if __name__ == "__main__":
-    try:
-        num = int(input("Enter a positive integer: "))
-        if num <= 0:
-            raise ValueError("Please enter a positive integer.")
-        
-        results = fizzbuzz(num)
-        for result in results:
-            print(result)
+    while True:
+        user_input = input("Enter a positive integer (or type 'exit' to quit): ")
+        if user_input.lower() == 'exit':
+            print("Goodbye!")
+            break
 
-    except ValueError as e:
-        print(f"Invalid input: {e}")
+        try:
+            num = int(user_input)
+            if num <= 0:
+                raise ValueError("Please enter a positive integer.")
+            
+            results = fizzbuzz(num)
+            print("Results:")
+            for result in results:
+                print(result)
+
+        except ValueError as e:
+            print(f"Invalid input: {e}")
