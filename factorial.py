@@ -11,14 +11,27 @@ def factorial_iterative(n):
     return result
 
 if __name__ == "__main__":
-    try:
-        num = int(input("Enter a non-negative integer: "))
-        if num < 0:
-            raise ValueError("Factorial is not defined for negative numbers.")
-        
-        # Choose either recursive or iterative
-        result = factorial(num)  # or factorial_iterative(num)
-        
-        print(f"The factorial of {num} is {result}")
-    except ValueError as e:
-        print(f"Invalid input: {e}")
+    while True:
+        user_input = input("Enter a non-negative integer (or type 'exit' to quit): ")
+        if user_input.lower() == 'exit':
+            print("Goodbye!")
+            break
+
+        try:
+            num = int(user_input)
+            if num < 0:
+                raise ValueError("Factorial is not defined for negative numbers.")
+            
+            method = input("Choose method: 'recursive' or 'iterative': ").strip().lower()
+            if method == 'recursive':
+                result = factorial(num)
+            elif method == 'iterative':
+                result = factorial_iterative(num)
+            else:
+                print("Invalid method. Please choose 'recursive' or 'iterative'.")
+                continue
+            
+            print(f"The factorial of {num} is {result}")
+
+        except ValueError as e:
+            print(f"Invalid input: {e}")
